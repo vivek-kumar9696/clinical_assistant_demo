@@ -1,0 +1,213 @@
+:root {
+    --wardly-blue: #00c6ff;
+    --wardly-teal: #00d2ff;
+    --bg-pure-white: black;
+    --slate-text: #ffffff;
+    --border-soft: #f1f5f9;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg-pure-white);
+    color: var(--slate-text);
+    overflow-x: hidden;
+}
+
+/* 1. FIXED NAVBAR */
+.navbar {
+    width: 100%;
+    height: 70px;
+    background: white;
+    border-bottom: 1px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.nav-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--wardly-blue), var(--wardly-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #64748b;
+    margin-left: 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a.active {
+    color: var(--wardly-blue);
+}
+
+/* 2. CALL CONTAINER */
+.call-container {
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.visualizer-stage {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px auto;
+    /* Removed flexbox properties so the children stack strictly via absolute positioning */
+}
+
+.pulse-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; /* CRITICAL: Stops the 2px border from shifting the circle off-center */
+    border: 2px solid var(--wardly-blue);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#waveSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    overflow: visible;
+}
+
+.active-call .pulse-ring {
+    animation: pulseOut 2.5s infinite linear;
+}
+
+@keyframes pulseOut {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* 4. BUTTONS */
+.ui-layer {
+    text-align: center;
+    z-index: 10;
+}
+
+.main-call-btn {
+    padding: 16px 48px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, var(--wardly-blue), var(--wardly-teal));
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 198, 255, 0.2);
+    transition: all 0.3s;
+}
+
+/* LIGHTBOX MODAL CONTAINER */
+.modal {
+    display: none; /* Toggled to 'flex' via JS */
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.75); /* Darker, professional slate backdrop */
+    backdrop-filter: blur(4px);        /* Softens the background dashboard */
+    z-index: 9999;                     /* Ensure it is above everything */
+
+    /* These three lines center the modal-content perfectly */
+    align-items: center;
+    justify-content: center;
+}
+
+/* THE MODAL BOX */
+.modal-content {
+    background: white;
+    padding: 32px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: hidden; /* Hide outer scroll */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: modalSlideUp 0.3s ease-out;
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.5rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+/* JSON BOX STYLING */
+#jsonContent {
+background: #f8fafc;
+color: #334155;
+padding: 20px;
+border-radius: 12px;
+font-size: 0.9rem;
+font-family: 'Fira Code', 'Courier New', monospace;
+border: 1px solid #e2e8f0;
+overflow-y: auto; /* Internal scroll only for the JSON */
+text-align: left;
+flex-grow: 1;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* Modal Close Button */
+.modal-footer button {
+    background: #0f172a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.modal-footer button:hover {
+    background: var(--wardly-blue);
+    transform: translateY(-1px);
+}
+
+.main-call-btn:active { transform: scale(0.95); }
+
+/* ADMIN STYLES */
+.dashboard { padding: 40px; max-width: 1200px; margin: 0 auto; }
+.admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.admin-table th { text-align: left; padding: 15px; border-bottom: 2px solid #f1f5f9; color: #64748b; }
+.admin-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WardlyAI | Admin Dashboard</title>
+    <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="brand">WardlyAI Admin</div>
+            <div class="nav-links">
+                <a href="index.html">Call Agent</a>
+                <a href="admin.html" class="active">Admin Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <h2>Patient Interaction Logs</h2>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Date & Time of Call</th>
+                    <th>Appointed Doctor</th>
+                    <th>Appointment Date & Time</th>
+                    <th>Brief</th>
+                </tr>
+            </thead>
+            <tbody id="logTable">
+                <!-- Injected via admin.js -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="briefModal" class="modal">
+        <div class="modal-content">
+            <h3>Brief (JSON)</h3>
+            <pre id="jsonContent"></pre>
+            <button onclick="document.getElementById('briefModal').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <script src="./src/admin.js"></script>
+</body>
+</html>

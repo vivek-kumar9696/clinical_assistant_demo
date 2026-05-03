@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WardlyAI | Patient Call</title>
+    <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body class="white-theme">
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="brand">WardlyAI</div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Call Agent</a>
+                <a href="admin.html">Admin Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="call-container">
+        <div class="visualizer-stage" id="visualizerStage">
+            <!-- Keep the pulsing ring -->
+            <div class="pulse-ring"></div>
+
+            <!-- Shrink the viewBox to 200x200 to match the circle -->
+            <svg id="waveSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#00c6ff" />
+                        <stop offset="100%" stop-color="#00d2ff" />
+                    </linearGradient>
+                </defs>
+                <!-- stroke-width changed to 8 -->
+                <path id="wavePath" d="M 0 100 L 200 100" stroke="url(#lineGrad)" stroke-width="8" fill="none" stroke-linecap="round" />
+            </svg>
+        </div>
+
+        <div class="ui-layer">
+            <button id="callBtn" class="main-call-btn">Start Call</button>
+            <p id="callStatus">System Ready</p>
+        </div>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+</body>
+</html>

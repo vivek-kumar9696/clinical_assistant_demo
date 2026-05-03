@@ -1,0 +1,29 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.env
+
+# --- Secrets & API Keys ---
+# CRITICAL: Never push LiveKit or OpenAI keys to GitHub
+agent/.env.local
+
+# --- Generated Data ---
+# Ignores the actual patient JSONs, but keeps the folder structure if you add a .gitkeep
+agent/intakes/*.json
+
+# --- Python Cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# --- OS Generated Files ---
+.DS_Store
+Thumbs.db

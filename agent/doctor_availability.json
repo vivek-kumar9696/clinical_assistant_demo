@@ -1,0 +1,7 @@
+{
+  "doctors": [
+    { "name": "Doctor Sarah Chen", "specialty": "General Medicine", "available_date_time_slots": ["2026-05-04 9:30 AM", "2026-05-05 11:00 AM"] },
+    { "name": "Doctor Marcus Vance", "specialty": "Gastroenterology", "available_date_time_slots": ["2026-05-04 02:00 PM", "2026-05-06 10:00 AM"] },
+    {"name": "Doctor Amy roberts", "specialty": "General Medicine", "available_date_time_slots": ["2026-05-05 1:00 PM", "2026-05-06 1:00 PM "] },
+  ]
+}
