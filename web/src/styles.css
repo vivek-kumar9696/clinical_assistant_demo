@@ -142,31 +142,33 @@ body {
 }
 
 /* THE MODAL BOX */
+/* THE MODAL BOX */
 .modal-content {
     background: white;
-    padding: 32px;
+    padding: 32px 32px 24px 32px;
     border-radius: 20px;
     width: 90%;
-    max-width: 700px;
-    max-height: 80vh;
-    overflow-y: hidden; /* Hide outer scroll */
+    max-width: 800px; /* Slightly wider for better whitespace */
+    max-height: 85vh; /* Constrain max height to the viewport */
     display: flex;
     flex-direction: column;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     animation: modalSlideUp 0.3s ease-out;
 }
 
-@keyframes modalSlideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+/* Make only the body scrollable */
+.modal-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 15px; /* Keep text away from the scrollbar */
+    margin-bottom: 20px;
 }
 
-.modal-content h3 {
-    margin: 0 0 20px 0;
-    font-size: 1.5rem;
-    color: #0f172a;
-    font-weight: 700;
-}
+/* Elegant Custom Scrollbar */
+.modal-body::-webkit-scrollbar { width: 8px; }
+.modal-body::-webkit-scrollbar-track { background: #f8fafc; border-radius: 4px; }
+.modal-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.modal-body::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
 /* JSON BOX STYLING */
 #jsonContent {
@@ -211,3 +213,75 @@ flex-grow: 1;
 .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
 .admin-table th { text-align: left; padding: 15px; border-bottom: 2px solid #f1f5f9; color: #64748b; }
 .admin-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
+
+/* --- TABS SYSTEM --- */
+.tab-container { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--border-soft); padding-bottom: 10px; }
+.tab-btn { background: none; border: none; padding: 10px 20px; cursor: pointer; font-weight: 600; color: #64748b; border-radius: 8px; transition: all 0.2s; font-size: 1rem; }
+.tab-btn:hover { background: #f1f5f9; color: #0f172a; }
+.tab-btn.active { background: #0f172a; color: white; }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- CLINICAL VIEW STYLES (WHITESPACE OPTIMIZED) --- */
+.clinical-header {
+    border-bottom: 2px solid var(--border-soft);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.clinical-header h2 { margin: 0 0 10px 0; color: #0f172a; font-size: 1.8rem; }
+.age-gender { color: #64748b; font-size: 1.2rem; font-weight: 500; }
+.clinical-header p { margin: 8px 0; color: #334155; font-size: 1rem; }
+
+.clinical-section { margin-bottom: 35px; } /* More space between sections */
+.clinical-section h4 {
+    margin: 0 0 15px 0;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+/* HPI Narrative Box - Better line height and padding */
+.narrative-box {
+    background: #f8fafc;
+    border-left: 4px solid var(--wardly-blue);
+    padding: 24px;
+    font-size: 1.05rem;
+    line-height: 1.8; /* Opened up line height for reading comfort */
+    color: #1e293b;
+    border-radius: 0 8px 8px 0;
+}
+
+/* 2-Column Grid for OLDCARTS & ROS */
+.clinical-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px; /* Increased gap between columns */
+}
+
+/* OLDCARTS List */
+.oldcarts-list { list-style: none; padding: 0; margin: 0; }
+.oldcarts-list li {
+    display: flex;           /* Creates a strict 2-column layout for label vs text */
+    align-items: flex-start; /* Keeps the label at the top even if text is 3 lines long */
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.95rem;
+    color: #0f172a;
+    line-height: 1.5;
+}
+.oldcarts-list li strong {
+    color: #64748b;
+    flex-shrink: 0;          /* Prevents the label from getting squished by long text */
+    width: 140px;            /* Locks the label column width */
+}
+
+/* Symptoms Tags */
+.tags-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px; }
+.tag { padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+.tag-positive { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+.tag-negative { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
+
+.mt-3 { margin-top: 30px; }

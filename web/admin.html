@@ -36,9 +36,29 @@
 
     <div id="briefModal" class="modal">
         <div class="modal-content">
-            <h3>Brief (JSON)</h3>
-            <pre id="jsonContent"></pre>
-            <button onclick="document.getElementById('briefModal').style.display='none'">Close</button>
+            <div class="modal-header">
+                <div class="tab-container">
+                    <!-- Tabs to switch views -->
+                    <button class="tab-btn active" onclick="switchTab(event, 'clinicianView')">Clinical View</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'jsonView')">Raw Data (JSON)</button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- 1. The Clinician View (Default) -->
+                <div id="clinicianView" class="tab-content active">
+                    <!-- Content injected via JS -->
+                </div>
+
+                <!-- 2. The JSON Developer View -->
+                <div id="jsonView" class="tab-content">
+                    <pre id="jsonContent"></pre>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="close-btn" onclick="document.getElementById('briefModal').style.display='none'">Close</button>
+            </div>
         </div>
     </div>
 

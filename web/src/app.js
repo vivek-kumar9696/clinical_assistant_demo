@@ -13,7 +13,7 @@ let animationId;
 let currentAmplitude = 0;
 let phase = 0;
 
-const LIVEKIT_URL = "wss://wardly-demo-vivek-rm3ctrsv.livekit.cloud";
+const LIVEKIT_URL = "wss://wardly-demo-0mnqcp7k.livekit.cloud";
 
 // --- Bulletproof Button Listener ---
 callBtn.addEventListener('click', async () => {
